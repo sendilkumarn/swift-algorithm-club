@@ -1,19 +1,19 @@
 //: Playground - noun: a place where people can play
 
-enum CountingSortError: ErrorType {
+enum CountingSortError: Error {
   case ArrayEmpty
 }
 
-func countingSort(array: [Int]) throws -> [Int] {
+func countingSort(_ array: [Int]) throws -> [Int] {
   guard array.count > 0 else {
     throw CountingSortError.ArrayEmpty
   }
 
   // Step 1
   // Create an array to store the count of each element
-  let maxElement = array.maxElement() ?? 0
+  let maxElement = array.max() ?? 0
 
-  var countArray = [Int](count: Int(maxElement + 1), repeatedValue: 0)
+  var countArray = [Int](repeating: 0, count: Int(maxElement + 1))
   for element in array {
     countArray[element] += 1
   }
@@ -29,7 +29,7 @@ func countingSort(array: [Int]) throws -> [Int] {
 
   // Step 3
   // Place the element in the final array as per the number of elements before it
-  var sortedArray = [Int](count: array.count, repeatedValue: 0)
+  var sortedArray = [Int](repeating: 0, count: array.count)
   for element in array {
     countArray[element] -= 1
     sortedArray[countArray[element]] = element
