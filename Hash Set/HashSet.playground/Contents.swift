@@ -1,17 +1,17 @@
 //: Playground - noun: a place where people can play
 
 public struct HashSet<T: Hashable> {
-  private var dictionary = Dictionary<T, Bool>()
+  fileprivate var dictionary = Dictionary<T, Bool>()
 
-  public mutating func insert(element: T) {
+  public mutating func insert(_ element: T) {
     dictionary[element] = true
   }
 
-  public mutating func remove(element: T) {
+  public mutating func remove(_ element: T) {
     dictionary[element] = nil
   }
 
-  public func contains(element: T) -> Bool {
+  public func contains(_ element: T) -> Bool {
     return dictionary[element] != nil
   }
 
@@ -48,7 +48,7 @@ set.contains("one")
 /* Union */
 
 extension HashSet {
-  public func union(otherSet: HashSet<T>) -> HashSet<T> {
+  public func union(_ otherSet: HashSet<T>) -> HashSet<T> {
     var combined = HashSet<T>()
     for obj in dictionary.keys {
       combined.insert(obj)
@@ -81,7 +81,7 @@ union.allElements()          // [5, 6, 2, 3, 1, 4]
 /* Intersection */
 
 extension HashSet {
-  public func intersect(otherSet: HashSet<T>) -> HashSet<T> {
+  public func intersect(_ otherSet: HashSet<T>) -> HashSet<T> {
     var common = HashSet<T>()
     for obj in dictionary.keys {
       if otherSet.contains(obj) {
@@ -100,7 +100,7 @@ intersection.allElements()               // [3, 4]
 /* Difference */
 
 extension HashSet {
-  public func difference(otherSet: HashSet<T>) -> HashSet<T> {
+  public func difference(_ otherSet: HashSet<T>) -> HashSet<T> {
     var diff = HashSet<T>()
     for obj in dictionary.keys {
       if !otherSet.contains(obj) {
